@@ -3,7 +3,7 @@ import numpy as np
 import netCDF4 as nc
 from PIL import Image
 import matplotlib.pyplot as plt
-from overlapping_pool import overlapping_pool
+from overpool import overlapping_pool
 
 
 # the resources for this example are not in this repository

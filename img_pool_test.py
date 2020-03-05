@@ -3,7 +3,7 @@ import numpy as np
 import netCDF4 as nc
 from PIL import Image
 import matplotlib.pyplot as plt
-from overlapping_pool import overlapping_pool
+from overpool import overlapping_pool
 
 
 img = np.asarray(Image.open('img.jpg'))
@@ -22,5 +22,4 @@ img_pool /= np.max(img_pool)
 fig, axes = plt.subplots(2,1)
 axes[0].imshow(img)
 axes[1].imshow(img_pool)
-plt.savefig('example/img_pool.png')
 plt.show()
