@@ -40,21 +40,18 @@ def pool(img, whs=2, pool_func=np.std, pool_func_kwargs={}):
     return(pooling_layer)
 
 
+img_fp = '/home/marcosrdac/projects/oil_spill/netcdf/S1A_IW_SLC__1SDV_20181008T052755_20181008T052822_024040_02A081_3524_deb_Orb_ML_msk.nc'
+img = nc.Dataset(img_fp)['Intensity_VV_db']
+print(img.shape)
 
-whs = 64
-pool_func = np.ptp
-img = np.asarray(Image.open('img.jpg'))
-
-
-img_pool0 = pool(img[:,:,0], whs, pool_func)
-img_pool = np.empty((img_pool0.shape[0], img_pool0.shape[1], 3))
-img_pool[:,:,0] = img_pool0
-del img_pool0
-img_pool[:,:,1] = pool(img[:,:,1], whs, pool_func)
-img_pool[:,:,2] = pool(img[:,:,2], whs, pool_func)
-img_pool /= np.max(img_pool)
-#print(np.max(img_pool))
-#print(img_pool)
+whs = 512
+def pool_func(x):
+    try:
+        val = np.nanvar(x)
+    except:
+        val = np.var(x)
+    return(val)
+img_pool = pool(img, whs, pool_func)
 
 fig, axes = plt.subplots(2,1)
 axes[0].imshow(img)
