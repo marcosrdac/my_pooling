@@ -19,7 +19,8 @@ img_pool[:,:,2] = overlapping_pool(img[:,:,2], whs, pool_func)
 # rescaling needed for RGB plotting
 img_pool /= np.max(img_pool)
 
-fig, axes = plt.subplots(2,1)
+fig, axes = plt.subplots(2,1, dpi=300)
 axes[0].imshow(img)
 axes[1].imshow(img_pool)
+#plt.savefig('example/img_pool.png')
 plt.show()
