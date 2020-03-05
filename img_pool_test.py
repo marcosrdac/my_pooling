@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from overlapping_pool import overlapping_pool
 
 
-img = np.asarray(Image.open('test_img.jpg'))
+img = np.asarray(Image.open('img.jpg'))
 whs = 64
 pool_func = np.ptp
 
@@ -22,4 +22,5 @@ img_pool /= np.max(img_pool)
 fig, axes = plt.subplots(2,1)
 axes[0].imshow(img)
 axes[1].imshow(img_pool)
+plt.savefig('example/img_pool.png')
 plt.show()
