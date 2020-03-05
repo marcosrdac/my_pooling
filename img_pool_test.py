@@ -5,7 +5,8 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from overlapping_pool import overlapping_pool
 
-img = np.asarray(Image.open('img.jpg'))
+
+img = np.asarray(Image.open('test_img.jpg'))
 whs = 64
 pool_func = np.ptp
 

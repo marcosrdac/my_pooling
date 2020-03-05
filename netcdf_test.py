@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 from overlapping_pool import overlapping_pool
 
 
+# the resources for this example are not in this repository
+
+
 img_fp = '''\
 /home/marcosrdac/projects/oil_spill/netcdf/S1A_IW_SLC__1SDV_20181008T052755_20181008T052822_024040_02A081_3524_deb_Orb_ML_msk.nc\
 '''
