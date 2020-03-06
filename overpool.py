@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def overlapping_pool(img, whs=2, pool_func=np.std, give_window=False, pool_func_kwargs={}):
+def overlapping_pool(img, whs=2, pool_func=np.std, give_window=False, pool_func_kw={}):
     '''
     Function made to create pooling layers with any pooling function, which is
     run at windows with side `ws` and half-side `whs`. The windows overlap at
@@ -33,13 +33,13 @@ def overlapping_pool(img, whs=2, pool_func=np.std, give_window=False, pool_func_
             yf = yi + ws
             subimg = img[yi:yf,xi:xf]
             window_kw = {'window':((yi,yf),(xi,xf))} if give_window else {}
-            pooling_layer[ypi, xpi] = pool_func(subimg, **window_kw, **pool_func_kwargs)
+            pooling_layer[ypi, xpi] = pool_func(subimg, **window_kw, **pool_func_kw)
         # if extra row, force the calculation on its cells
         if extra_row != 0:
             ypi += 1
             subimg = img[-ws:,xi:xf]
             window_kw = {'window':((yi,yf),(xi,xf))} if give_window else {}
-            pooling_layer[ypi, xpi] = pool_func(subimg, **window_kw, **pool_func_kwargs)
+            pooling_layer[ypi, xpi] = pool_func(subimg, **window_kw, **pool_func_kw)
     # if extra col, force the calculation on its cells
     if extra_col != 0:
         xpi += 1
@@ -48,5 +48,5 @@ def overlapping_pool(img, whs=2, pool_func=np.std, give_window=False, pool_func_
             yf = yi + ws
             subimg = img[yi:yf,-ws:]
             window_kw = {'window':((yi,yf),(xi,xf))} if give_window else {}
-            pooling_layer[ypi, xpi] = pool_func(subimg, **window_kw, **pool_func_kwargs)
+            pooling_layer[ypi, xpi] = pool_func(subimg, **window_kw, **pool_func_kw)
     return(pooling_layer)
