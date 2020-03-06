@@ -32,7 +32,7 @@ img_pool = overlapping_pool(img, whs, pool_func,
         give_window=True, pool_func_kw={'mask': mask})
 
 # showing results
-fig, axes = plt.subplots(3,1)
+fig, axes = plt.subplots(3,1, figsize=(3,6.5))
 axes[0].set_title('Original Image')
 axes[0].imshow(img)
 axes[1].set_title('Mask used')
