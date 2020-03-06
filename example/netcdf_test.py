@@ -25,6 +25,10 @@ def pool_func(x):
 img_pool = overlapping_pool(img, whs, pool_func)
 
 fig, axes = plt.subplots(2,1)
+axes[0].set_title('Original Image')
 axes[0].imshow(img)
+axes[1].set_title('Pooling layer')
 axes[1].imshow(img_pool)
+fig.subplots_adjust(hspace=.4)
+plt.savefig('img_pool.png')
 plt.show()
