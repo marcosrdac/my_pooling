@@ -7,18 +7,18 @@ Make a 2D pooling layer by walking in half windows over a 2D image (`whs`:= *win
 
 ### RGB image test
 
-Using:
+Function used over every color layer. Parameters used:
 ```python
 whs = 64
 pool_func = np.ptp  # (maximum value - minimum value)
 ```
 
-![RGB image test](example/img_pool.png)
+![RGB image test](example/rgb_pool.png)
 
 
 ### NetCDF image test
 
-Using:
+Parameters used:
 ```python
 whs = 512
 def pool_func(x):

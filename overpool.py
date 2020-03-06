@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def overlapping_pool(img, whs=2, pool_func=np.std, pool_func_kwargs={}):
+def overlapping_pool(img, whs=2, pool_func=np.std, give_window=False, pool_func_kwargs={}):
     '''
     Function made to create pooling layers with any pooling function, which is
     run at windows with side `ws` and half-side `whs`. The windows overlap at
@@ -12,7 +12,7 @@ def overlapping_pool(img, whs=2, pool_func=np.std, pool_func_kwargs={}):
     :param img: 2D array to pool.
     :param whs: window half-side.
     :param pool_func: Pooling function to be used.
-    :param pool_func_kwargs: dict of kwargs to be used for `pool_func_kwargs`.
+    :param pool_func_kw: dict of kwargs to be used for `pool_func`.
     '''
     ws = 2*whs
     rows, cols = img.shape
@@ -32,12 +32,14 @@ def overlapping_pool(img, whs=2, pool_func=np.std, pool_func_kwargs={}):
             yi = whs*ypi
             yf = yi + ws
             subimg = img[yi:yf,xi:xf]
-            pooling_layer[ypi, xpi] = pool_func(subimg, **pool_func_kwargs)
+            window_kw = {'window':((yi,yf),(xi,xf))} if give_window else {}
+            pooling_layer[ypi, xpi] = pool_func(subimg, **window_kw, **pool_func_kwargs)
         # if extra row, force the calculation on its cells
         if extra_row != 0:
             ypi += 1
             subimg = img[-ws:,xi:xf]
-            pooling_layer[ypi, xpi] = pool_func(subimg, **pool_func_kwargs)
+            window_kw = {'window':((yi,yf),(xi,xf))} if give_window else {}
+            pooling_layer[ypi, xpi] = pool_func(subimg, **window_kw, **pool_func_kwargs)
     # if extra col, force the calculation on its cells
     if extra_col != 0:
         xpi += 1
@@ -45,5 +47,6 @@ def overlapping_pool(img, whs=2, pool_func=np.std, pool_func_kwargs={}):
             yi = whs*ypi
             yf = yi + ws
             subimg = img[yi:yf,-ws:]
-            pooling_layer[ypi, xpi] = pool_func(subimg, **pool_func_kwargs)
+            window_kw = {'window':((yi,yf),(xi,xf))} if give_window else {}
+            pooling_layer[ypi, xpi] = pool_func(subimg, **window_kw, **pool_func_kwargs)
     return(pooling_layer)

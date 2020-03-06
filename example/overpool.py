@@ -1,1 +1,1 @@
-/home/marcosrdac/projects/overpool/overpool.py
+../overpool.py
