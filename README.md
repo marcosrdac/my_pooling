@@ -5,17 +5,21 @@ Make a 2D pooling layer walking in half windows (`whs`:= window half-side) over 
 
 ## Examples
 
+### RGB image test
+
 Using:
-```
+```python
 whs = 64
 pool_func = np.ptp  # (maximum value - minimum value)
 ```
 
-![Image test](example/img_pool.png)
+![RGB image test](example/img_pool.png)
 
+
+### NetCDF image test
 
 Using:
-```
+```python
 whs = 512
 def pool_func(x):
     try:
@@ -25,4 +29,4 @@ def pool_func(x):
     return(val)
 ```
 
-![Image test](example/netcdf_pool.png)
+![NetCDF image test](example/netcdf_pool.png)
