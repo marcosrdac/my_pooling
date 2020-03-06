@@ -1,6 +1,6 @@
 # overpool
 
-Make a 2D pooling layer walking in half windows (`whs`:= window half-side) over a 2D image. Pooling is the operation of reducing image size in a relevant way, usually for machine learning purposes. The pooling function is arbitrary (see in the example bellow).
+Make a 2D pooling layer walking in half windows over a 2D image (`whs`:= *window half-side*). Pooling is the operation of reducing image dimensions in a relevant way, usually for machine learning purposes. The pooling function is arbitrary (see in the "Examples" subsection bellow).
 
 
 ## Examples
