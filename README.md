@@ -12,8 +12,7 @@ Function used over every color layer. Parameters used:
 whs = 64
 pool_func = np.ptp  # (maximum value - minimum value)
 ```
-
-![RGB image test](example/rgb_pool.png)
+<img align="center" src="example/rgb_pool.png" alt="RGB image test">
 
 
 ### 2D NetCDF variable test
@@ -31,7 +30,7 @@ def pool_func(x):
     return(val)
 ```
 
-![NetCDF image test](example/netcdf_pool.png)
+<img align="center" src="example/netcdf_pool.png" alt="NetCDF image test">
 
 
 ### One channel image masked pool test
@@ -49,5 +48,4 @@ def pool_func(img, window, mask):
     except: result = np.mean(masked)
     return(result)
 ```
-
-![One channel image test](example/masked_pool.png)
+<img align="center" src="example/masked_pool.png" alt="One channel image masked pool test">
