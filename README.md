@@ -48,3 +48,11 @@ def pool_func(img, window, mask):
 ```
 
 <p align="center"><img src="example/masked_pool.png" alt="One channel image masked pool test">
+
+
+## Contact
+
+  - **Name:** Marcos Conceição
+  - **E-mail:** [marcosrdac@gmail.com](mailto:marcosrdac@gmail.com)
+  - **GitHub:** [marcosrdac](github.com/marcosrdac)
+  - **Website:** [marcosrdac.github.io](http://marcosrdac.github.io)
