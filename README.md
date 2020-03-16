@@ -52,7 +52,7 @@ def pool_func(img, window, mask):
 
 ## Contact
 
-  - **Name:** Marcos Conceição
+  - **Name:** Marcos Reinan de Assis Conceição
   - **E-mail:** [marcosrdac@gmail.com](mailto:marcosrdac@gmail.com)
   - **GitHub:** [marcosrdac](github.com/marcosrdac)
   - **Website:** [marcosrdac.github.io](http://marcosrdac.github.io)
