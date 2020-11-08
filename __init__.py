@@ -26,7 +26,8 @@ def overlapping_pool(img, whs=2, pool_func=np.std,
         extra_row = 1
     if cols % whs != 0:
         extra_col = 1
-    pooling_layer = np.empty((pool_rows+extra_row, pool_cols+extra_col))
+    # pooling_layer = np.empty((pool_rows+extra_row, pool_cols+extra_col))
+    pooling_layer = np.zeros((pool_rows+extra_row, pool_cols+extra_col))
     # pooling function calcylated at every window
     for xpi in range(pool_cols):
         xi = whs*xpi
@@ -48,11 +49,41 @@ def overlapping_pool(img, whs=2, pool_func=np.std,
     # if extra col, force the calculation on its cells
     if extra_col != 0:
         xpi += 1
-        for ypi in range(pool_rows+extra_row):
+        xi = cols-ws
+        xf = cols
+        for ypi in range(pool_rows):
             yi = whs*ypi
             yf = yi + ws
+            subimg = img[yi:yf, xi:xf]
+            window_kw = {'window': ((yi, yf), (xi, xf))} if give_window else {}
+            pooling_layer[ypi, xpi] = pool_func(subimg,
+                                                **window_kw,
+                                                **pool_func_kw)
+        # extra row of extra column
+        if extra_row != 0:
+            ypi += 1
+            yi = rows-ws
+            yf = rows
             subimg = img[yi:yf, -ws:]
             window_kw = {'window': ((yi, yf), (xi, xf))} if give_window else {}
-            pooling_layer[ypi, xpi] = pool_func(
-                subimg, **window_kw, **pool_func_kw)
+            pooling_layer[ypi, xpi] = pool_func(subimg,
+                                            **window_kw,
+                                            **pool_func_kw)
     return(pooling_layer)
+
+
+if __name__ == '__main__':
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    shape = (2204, 3555)
+    m = np.arange(np.multiply(*shape)).reshape(shape)
+    _m = overlapping_pool(m, 512, np.mean)
+
+    plt.subplot(121)
+    plt.imshow(m)
+    plt.colorbar()
+    plt.subplot(122)
+    plt.imshow(_m)
+    plt.colorbar()
+    plt.show()
