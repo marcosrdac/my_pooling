@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def overlapping_pool(img, whs=2, pool_func=np.std,
+def overlapping_pool(img, whs=2, pool_func=np.std, extra=True,
                      give_window=False, pool_func_kw={}, last_dim=None):
     '''
     Function made to create pooling layers with any pooling function, which is
@@ -22,10 +22,11 @@ def overlapping_pool(img, whs=2, pool_func=np.std,
     pool_rows = rows//ws + (rows-whs)//ws
     pool_cols = cols//ws + (cols-whs)//ws
     extra_col, extra_row = 0, 0
-    if rows % whs != 0:
-        extra_row = 1
-    if cols % whs != 0:
-        extra_col = 1
+    if extra:
+        if rows % whs != 0:
+            extra_row = 1
+        if cols % whs != 0:
+            extra_col = 1
     outshape = [pool_rows+extra_row, pool_cols+extra_col]
     if last_dim is not None:
         outshape.append(last_dim)
